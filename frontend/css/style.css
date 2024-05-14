@@ -6,7 +6,7 @@
 
 .container {
     margin: auto;
-    max-width: 110px;
+    max-width: 1100px;
     padding: 0 20px;
     overflow: auto;
 } 
@@ -19,7 +19,19 @@
 
 #showcase .title-card {
     height: 200px;
-    width: 500px;
-    background-color: gray;
-    float: middle;
+    width: 100%;
+    background-color: rgb(83, 198, 226);
+    margin-top: 25px;
+    border-radius: 100%;
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    align-items: center;
+    display: grid;
+} 
+
+#showcase .title-card p {
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 75px;
 } 
