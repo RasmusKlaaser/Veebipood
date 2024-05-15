@@ -9,6 +9,8 @@
     max-width: 1100px;
     padding: 0 20px;
     overflow: auto;
+
+
 } 
 
 #showcase {
@@ -34,4 +36,62 @@
     text-align: center;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 75px;
+} 
+
+#showcase .strike {
+    float: left;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    margin-left: 15%;
+    margin-top: 5%;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+} 
+
+#showcase .storeb {
+    height: 100px;
+    width: 300px;
+    background-color: rgb(217, 217, 217);
+    margin-top: 405px;
+    border-color: black;
+    border-radius: 15px;
+    border: 2px;
+    border-style: solid;
+    align-items:flex-end;
+    float: right;
+    margin-right: 10%;
+    
+} 
+
+#showcase .storec {
+    height: 80px;
+    width: 270px;
+    background-color: rgb(207, 195, 183);
+    border-color: black;
+    border-radius: 15px;
+    border: 2px;
+    border-style: solid;
+    display: grid;
+    margin: auto;
+
+    margin-top: 8px;
+} 
+
+#showcase .store-strike {
+    display: grid;
+    margin: auto;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+} 
+
+#showcase .store-follow {
+    float: left;
+    bottom: 0;
+    right: 0;
+    width: 180px;
+    margin-left: -27%;
+    margin-top: 25%;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
 } 
