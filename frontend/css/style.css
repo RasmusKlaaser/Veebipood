@@ -202,8 +202,33 @@ a {
  
 #third-showcase .third-showcase-text {
     text-align: center;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 40px;
+    font-family: 'JetBrain Mono';
     margin-top: 80px;
     float: left;
+} 
+
+#third-showcase .thumb-box {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(217, 217, 217);
+    margin-top: 170px;
+    border-color: black;
+    border-radius: 15px;
+    border: 2px;
+    border-style: solid;
+} 
+
+#third-showcase .thumb-box-pic {
+    height: 270px;
+    width: 270px;
+    background-color: rgb(217, 217, 217);
+    border-color: black;
+    border-radius: 15px;
+    border: 1px;
+    border-style: solid;
+    display: grid;
+    margin: auto;
+    margin-top: 15px;
+    background: url("../img/surf1.jpeg") no-repeat center center/cover;
 } 
