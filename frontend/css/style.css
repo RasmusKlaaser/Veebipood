@@ -232,3 +232,17 @@ a {
     margin-top: 15px;
     background: url("../img/surf1.jpeg") no-repeat center center/cover;
 } 
+
+#third-showcase .thumb-box-pic {
+    height: 270px;
+    width: 270px;
+    background-color: rgb(217, 217, 217);
+    border-color: black;
+    border-radius: 15px;
+    border: 1px;
+    border-style: solid;
+    display: grid;
+    margin: auto;
+    margin-top: 15px;
+    background: url("../img/surf1.jpeg") no-repeat center center/cover;
+} 
