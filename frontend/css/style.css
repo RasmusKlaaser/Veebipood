@@ -25,6 +25,21 @@ a {
     border-style: solid;
 } 
 
+.left {
+    float: left;
+} 
+
+.right {
+    float: right;
+} 
+
+.jetbrains-mono {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
 #showcase {
     background: url(../img/pexels-photo-416676.jpeg) no-repeat center center/cover;
     height: 1080px;
@@ -46,7 +61,6 @@ a {
 
 #showcase .title-card p {
     text-align: center;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 75px;
 } 
 
@@ -57,7 +71,6 @@ a {
     width: 300px;
     margin-left: 15%;
     margin-top: 5%;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
 } 
 
@@ -66,10 +79,6 @@ a {
     width: 300px;
     background-color: rgb(217, 217, 217);
     margin-top: 405px;
-    border-color: black;
-    border-radius: 15px;
-    border: 2px;
-    border-style: solid;
     align-items:flex-end;
     float: right;
     margin-right: 10%;
@@ -80,10 +89,6 @@ a {
     height: 80px;
     width: 270px;
     background-color: rgb(207, 195, 183);
-    border-color: black;
-    border-radius: 15px;
-    border: 2px;
-    border-style: solid;
     display: grid;
     margin: auto;
     text-align: center;
@@ -101,7 +106,6 @@ a {
 #showcase .store-strike {
     display: grid;
     margin: auto;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
 } 
 
@@ -112,7 +116,6 @@ a {
     width: 180px;
     margin-left: -27%;
     margin-top: 25%;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px;
 } 
 
@@ -203,46 +206,88 @@ a {
 #third-showcase .third-showcase-text {
     text-align: center;
     font-size: 40px;
-    font-family: 'JetBrain Mono';
     margin-top: 80px;
     float: left;
 } 
+#third-showcase .pricing {
+    margin-top: 170px;
+    width: 100%;
+    height: 410px;
+} 
 
 #third-showcase .thumb-box {
+    float: left;
     height: 300px;
     width: 300px;
     background-color: rgb(217, 217, 217);
-    margin-top: 170px;
-    border-color: black;
-    border-radius: 15px;
-    border: 2px;
-    border-style: solid;
+    padding-top: 15px;
 } 
 
 #third-showcase .thumb-box-pic {
     height: 270px;
     width: 270px;
-    background-color: rgb(217, 217, 217);
-    border-color: black;
-    border-radius: 15px;
-    border: 1px;
-    border-style: solid;
     display: grid;
     margin: auto;
-    margin-top: 15px;
     background: url("../img/surf1.jpeg") no-repeat center center/cover;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
 } 
 
-#third-showcase .thumb-box-pic {
-    height: 270px;
-    width: 270px;
-    background-color: rgb(217, 217, 217);
-    border-color: black;
-    border-radius: 15px;
-    border: 1px;
-    border-style: solid;
-    display: grid;
-    margin: auto;
-    margin-top: 15px;
-    background: url("../img/surf1.jpeg") no-repeat center center/cover;
+#third-showcase .thumb-text-box {
+    width: 65%;
+    height: 100px;
+    padding-top: 20px;
+    float: right;
+} 
+
+#third-showcase .thumb-text-left {
+    text-align: left;
+    font-size: 40px;
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+#third-showcase .thumb-text-right {
+    text-align: right;
+    font-size: 40px;
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+
+#third-showcase .mail-box {
+
+} 
+
+#third-showcase .billing-font {
+    font-size: 40px;
+    color: rgb(68, 68, 68);
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+} 
+
+#third-showcase .large-billing {
+    width: 100%;
+    height: 80px;
+    background-color: #D1B398;
+    margin-bottom: 20px;
+    padding-left: 20px;
+} 
+
+#third-showcase .small-billing {
+    width: 49%;
+    height: 80px;
+    background-color: #D1B398;
+    margin-bottom: 20px;
+    padding-left: 20px;
+} 
+
+#third-showcase .submit-button {
+    width: 49%;
+    height: 80px;
+    background-color: #6BAAE1;
+    padding-left: 20px;
 } 
