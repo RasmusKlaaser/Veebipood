@@ -11,12 +11,45 @@
 <body>
     <div id="third-showcase">
         <div class="container">
-            <div class="third-showcase-text">
+            <div class="third-showcase-text jetbrains-mono">
                 <p>Checkout</p>
             </div>
-            <div class="thumb-box">
-                <div class="thumb-box-pic"></div>
+            <div class="pricing">
+                <div class="thumb-box borders">
+                    <div class="thumb-box-pic borders"></div>
+                </div>
+                <div class="thumb-text-box">
+                    <div class="thumb-text-left jetbrains-mono">
+                        <p>Product Name</p>
+                        <br><br>
+                        <p>Shipping</p>
+                        <br><br>
+                        <p>Total</p>
+                    </div>
+                    <div class="thumb-text-right jetbrains-mono">
+                        <p>0€</p>
+                        <br><br>
+                        <p>0€</p>
+                        <br><br>
+                        <p>0€</p>
+                    </div>
+                </div>
             </div>
-        </div>
+            <hr>
+            <br>
+            <div class="billing jetbrains-mono">
+                <form action="">
+                    <label for="billing"></label>
+                    <input class="large-billing borders billing-font" type="email" id="billing" name="email" placeholder="Email"><br>
+                    <input class="large-billing borders billing-font" type="text" id="billing" name="card-info" placeholder="Card information"><br>
+                    <div>
+                        <input class="small-billing borders billing-font left" type="text" id="billing" name="mm/yy" placeholder="MM/YY">
+                        <input class="small-billing borders billing-font right" type="text" id="billing" name="cvc" placeholder="CVC">
+                    </div><br>
+                    <input class="submit-button borders billing-font" type="submit" value="Purchase">
+                </form>   
+            </div>
+        </div>         
     </div>
-    
+</body>
+</html>
