@@ -3,20 +3,37 @@ import React, {useEffect, useState} from 'react'
 
 
 function App() {
-  const [testData, settestData] = useState([{}])
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        settestData(data)
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const name = formData.get('name');
+    
+    try {
+      const response = await fetch('/api/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save data');
       }
-    )
-  }, [])
+      event.target.reset();
+
+
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
 
   return (
     <>
-      {testData.test}
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="name" placeholder="nimi" />
+        <button type="submit">Submit</button>
+        </form>
     </>
   );
 }
