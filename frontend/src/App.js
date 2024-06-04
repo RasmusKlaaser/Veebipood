@@ -1,6 +1,8 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/homepage';
+import Store from './components/store';
 
 function App() {
   const handleSubmit = async (event) => {
@@ -29,13 +31,14 @@ function App() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="nimi" />
-        <button type="submit">Submit</button>
-        </form>
-    </>
-  );
+    <Router>
+        <Routes>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/Store" element={<Store/>}/>
+
+        </Routes>
+    </Router>
+);
 }
 
 export default App;
