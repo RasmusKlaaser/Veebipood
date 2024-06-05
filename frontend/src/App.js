@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/homepage';
 import Store from './components/store';
+import Checkout from './components/checkout';
+import Confirmation from './components/confirmation'
 
 function App() {
   const handleSubmit = async (event) => {
@@ -34,8 +36,9 @@ function App() {
     <Router>
         <Routes>
             <Route path="/" element={<HomePage/>}/>
-            <Route path="/Store" element={<Store/>}/>
-
+            <Route path="/store" element={<Store/>}/>
+            <Route path="/checkout" element={<Checkout/>}/>
+            <Route path="/confirmation" element={<Confirmation/>}/>
         </Routes>
     </Router>
 );
