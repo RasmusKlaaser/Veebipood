@@ -20,10 +20,31 @@ function Store() {
         };
         fetchData();
     }, []);
+    const handlequantity = async () => {
+        if (product.quantity > 0) {
+            const updatedProduct = { ...product, quantity: product.quantity - 1 };
+            setProduct(updatedProduct);
 
-    // Conditional rendering to handle the case when product is undefined or null
+            try {
+                const response = await fetch(`/api/products/${product._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedProduct),
+                });
+
+                if (!response.ok) {
+                    throw new Error('failed to update product');
+                }
+            } catch (error) {
+                console.error('error updating product:', error);
+            }
+        }
+    };
+
     if (!product) {
-        return <div>Loading...</div>; // Render a loading indicator while fetching data
+        return <div>Loading...</div>; 
     }
 
     return (
@@ -39,6 +60,7 @@ function Store() {
                         <h1> Name: {product.name}</h1>
                         <h1>Price: {product.price} $</h1>
                         <h1>{product.quantity} available</h1>
+                        <button onClick={handlequantity}> Subtract</button>
                     </div>
                     <div className="store-text-block2 borders"></div>
                     <div className="store-text-block3 borders"></div>

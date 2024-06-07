@@ -77,6 +77,24 @@ app.post('/api/data', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+app.put('/api/products/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const updatedProduct = req.body;
+        
+        const result = await ProductModel.findByIdAndUpdate(productId, updatedProduct, { new: true });
+        
+        if (!result) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error updating product:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 app.listen(5000, () => {
     console.log('server 5000')
 })

@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react';
 
 function Confirmation() {
     return (
@@ -24,8 +24,9 @@ function Confirmation() {
             </div>
         </div>
     </div>
-    <footer id="footer"></footer>
+    <footer id="footer">
+    </footer>
         </>
     )
 }
-export default Confirmation
+export default Confirmation;
