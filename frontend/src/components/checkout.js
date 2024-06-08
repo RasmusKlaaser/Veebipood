@@ -69,7 +69,7 @@ function Checkout() {
                             </div>
                             <br />
 
-                            <a href='confirmation' > ajutine submit nupp
+                            <a href='confirmation' > ajutine  nupp
                                 </a>
                         </form>
                     </div>
