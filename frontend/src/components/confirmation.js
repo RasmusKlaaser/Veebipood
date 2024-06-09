@@ -19,8 +19,8 @@ function Confirmation() {
             <div class="fourth-showcase-box borders">
                 <div class="fourth-showcase-box-text">
                     <p>People that bought the same product also purchased:</p>
+                    <div class="fourth-showcase-box-picture borders"></div>
                 </div>
-                <div class="fourth-showcase-box-picture borders"></div>
             </div>
         </div>
     </div>
