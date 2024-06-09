@@ -1,6 +1,12 @@
 import React from 'react';
 
 function Checkout() {
+    console.log(window.localStorage.getItem('cart'))
+    const clearCart = () => {
+        window.localStorage.removeItem('cart');
+        console.log(window.localStorage.getItem('cart'))
+        
+    }
     return (
         <>
             <nav id="navbar"></nav>
@@ -72,6 +78,7 @@ function Checkout() {
                             <a href='confirmation' > ajutine  nupp
                                 </a>
                         </form>
+                            <button onClick={clearCart}>Clear cart</button>
                     </div>
                 </div>
             </div>

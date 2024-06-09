@@ -1,7 +1,41 @@
 import React, { useEffect, useState } from "react";
 
 function Store() {
+    // save data
+    /*
+    const storedPalun = window.localStorage.getItem('palun');
+    const initialPalun = storedPalun !== null ? JSON.parse(storedPalun) : false;
+    const [palun, setPalun] = useState(initialPalun);
+
+  
+    useEffect(() => {
+        console.log('Saving to localStorage:', palun);
+        window.localStorage.setItem('palun', JSON.stringify(palun));
+    }, [palun]);
+    */
+   const storedCart = window.localStorage.getItem('cart');
+    const initialCart = storedCart !== null ? JSON.parse(storedCart) : {};
+    const [cart, setCart] = useState(initialCart);
+
+
+    useEffect(() => {
+        console.log(cart);
+        window.localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
+   
+    const test = (id) => {
+        setCart(prevCart => {
+            const newCart = { ...prevCart };
+            newCart[id] = (newCart[id] || 0) + 1;
+            return newCart;
+        });
+    };
+
+
+
     const [products, setProducts] = useState([]);
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -11,10 +45,10 @@ function Store() {
                     throw new Error('Failed to fetch products');
                 }
                 const data = await response.json();
-                // List of product IDs
+                
                 const productIDs = ['66621af72210b19e6267b512', '66621b03e231f0219de61084'];
 
-                // Filter products based on the provided IDs
+               
                 const filteredProducts = data.filter(product => productIDs.includes(product._id));
                 setProducts(filteredProducts);
             } catch (error) {
@@ -23,6 +57,9 @@ function Store() {
         };
         fetchData();
     }, []);
+    if (products.length === 0) {
+        return <div>Loading...</div>; 
+    }
 
     /*
     const handlequantity = async () => {
@@ -48,16 +85,7 @@ function Store() {
         }
     };*/
 
-    if (products.length === 0) {
-        return <div>Loading...</div>; 
-    }
 
-    // cart system
-    let cart = {};
-    const test = (id) => {
-        cart[id] = (cart[id] || 0) + 1;
-        console.log(cart);
-    };
     return (
         <div id="secondary-showcase">
             <div className="container">
