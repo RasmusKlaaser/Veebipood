@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="index.js"></script>
-    <title>Veebipood</title>
-</head>
-<body>
-    <div id="showcase">
+
+import React from "react";
+
+function HomePage(){
+    return(
+        <div id="showcase">
         <div class="container">
             <div class="title-card">
                 <p>Surf Board</p>
@@ -19,7 +14,7 @@
         </div>
         <div class="storeb borders">
             <div class="storec borders">
-                <a href="./store.html" class="store-strike">
+                <a href="store" class="store-strike">
                     Store
                 </a>
             </div>
@@ -28,6 +23,7 @@
             <p>Follow us on social media</p>
         </div>
         
-    </div>   
-</body>
-</html>
+    </div> 
+    );
+}
+export default HomePage

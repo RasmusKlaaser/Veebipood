@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="index.js"></script>
-    <title>Conformation</title>
-</head>
-<nav id="navbar"></nav>
-<body>
+import React from 'react';
+
+function Confirmation() {
+    return (
+        <>
     <div id="fourth-showcase">
         <div class="container">
             <div class="fourth-showcase-text jetbrains-mono">
@@ -30,5 +24,9 @@
             </div>
         </div>
     </div>
-</body>
-<footer id="footer"></footer>
+    <footer id="footer">
+    </footer>
+        </>
+    )
+}
+export default Confirmation;
