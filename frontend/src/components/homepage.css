@@ -1,0 +1,78 @@
+#showcase {
+    background: url(../../img/pexels-photo-416676.jpeg) no-repeat center center/cover;
+    height: 1080px;
+    width: 100%;
+} 
+
+#showcase .title-card {
+    height: 200px;
+    width: 100%;
+    background-color: rgb(83, 198, 226);
+    margin-top: 25px;
+    border-radius: 100%;
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    align-items: center;
+    display: grid;
+} 
+
+#showcase .title-card p {
+    text-align: center;
+    font-size: 75px;
+} 
+
+#showcase .strike {
+    float: left;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    margin-left: 15%;
+    margin-top: 5%;
+    font-size: 30px;
+} 
+
+#showcase .storeb {
+    height: 100px;
+    width: 300px;
+    background-color: rgb(217, 217, 217);
+    margin-top: 405px;
+    align-items:flex-end;
+    float: right;
+    margin-right: 10%;
+    
+} 
+
+#showcase .storec {
+    height: 80px;
+    width: 270px;
+    background-color: rgb(207, 195, 183);
+    display: grid;
+    margin: auto;
+    text-align: center;
+    margin-top: 8px;
+} 
+
+#showcase .storec a {
+    width: 270px;
+    height: 80px;
+    padding: auto;
+    margin-top: 20px;
+} 
+
+
+#showcase .store-strike {
+    display: grid;
+    margin: auto;
+    font-size: 30px;
+} 
+
+#showcase .store-follow {
+    float: left;
+    bottom: 0;
+    right: 0;
+    width: 180px;
+    margin-left: -27%;
+    margin-top: 25%;
+    font-size: 25px;
+} 

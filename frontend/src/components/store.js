@@ -6,11 +6,12 @@ function Store() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('http://localhost:5000/api/products');
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
                 const data = await response.json();
+                console.log('data:', data);
                 // List of product IDs
                 const productIDs = ['66621af72210b19e6267b512', '66621b03e231f0219de61084'];
 
