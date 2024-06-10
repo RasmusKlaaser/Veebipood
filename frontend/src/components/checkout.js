@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 function Checkout() {
+    // Cart clear button
     console.log(window.localStorage.getItem('cart'))
     const clearCart = () => {
         window.localStorage.removeItem('cart');
         console.log(window.localStorage.getItem('cart'))
-        
     }
+
+    // calculate total
+    let total = 0;
+    const cart = JSON.parse(window.localStorage.getItem('cart'))
+    console.log(cart)
+    total += cart[0]
+    console.log(total)
+
     return (
         <>
             <nav id="navbar"></nav>
@@ -25,10 +33,10 @@ function Checkout() {
                                 <br />
                                 <p>Shipping</p>
                                 <br />
-                                <p>Total</p>
+                                <p></p>
                             </div>
                             <div className="thumb-text-right jetbrains-mono">
-                                <p>0€</p>
+                                <p>{total}€</p>
                                 <br />
                                 <p>0€</p>
                                 <br />

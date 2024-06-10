@@ -3,8 +3,11 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     id: {
         type: Number,
-        required: true,
         unique: true
+    },
+    image: {
+        type: String,
+        required: false
     },
     name: {
         type: String,

@@ -2,17 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Store() {
     // save data
-    /*
-    const storedPalun = window.localStorage.getItem('palun');
-    const initialPalun = storedPalun !== null ? JSON.parse(storedPalun) : false;
-    const [palun, setPalun] = useState(initialPalun);
-
-  
-    useEffect(() => {
-        console.log('Saving to localStorage:', palun);
-        window.localStorage.setItem('palun', JSON.stringify(palun));
-    }, [palun]);
-    */
+    
    const storedCart = window.localStorage.getItem('cart');
     const initialCart = storedCart !== null ? JSON.parse(storedCart) : {};
     const [cart, setCart] = useState(initialCart);
@@ -21,10 +11,11 @@ function Store() {
     useEffect(() => {
         console.log(cart);
         window.localStorage.setItem('cart', JSON.stringify(cart));
+        console.log(cart)
     }, [cart]);
 
    
-    const test = (id) => {
+    const handleProductAdd = (id) => {
         setCart(prevCart => {
             const newCart = { ...prevCart };
             newCart[id] = (newCart[id] || 0) + 1;
@@ -45,12 +36,7 @@ function Store() {
                     throw new Error('Failed to fetch products');
                 }
                 const data = await response.json();
-                
-                const productIDs = ['66621af72210b19e6267b512', '66621b03e231f0219de61084'];
-
-               
-                const filteredProducts = data.filter(product => productIDs.includes(product._id));
-                setProducts(filteredProducts);
+                setProducts(data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -89,24 +75,18 @@ function Store() {
     return (
         <div id="secondary-showcase">
             <div className="container">
-                <div className="store-photo">
-                    <a href="./checkout"><div className="store-thumb1 borders"></div></a>             
-                    <a href="checkout"><div className="store-thumb2 borders"></div></a>
-                    <a onClick={() => test('66621af72210b19e6267b512')} href="checkout"><div className="store-thumb3 borders"></div></a>
-                </div>
-                <div className="store-text">
-                    <div className="store-text-block1 borders">
-                        <h1>Name: {products[0].name}</h1>
-                        <h1>Price: {products[0].price} $</h1>
-                        <h1>{products[0].quantity} available</h1>
-                        <button onClick={() => test(products[0]._id)}> ADD TO CART</button>
-                    </div>
-                    <div className="store-text-block2 borders"></div>
-                        <h1>Name: {products[1].name}</h1>
-                        <h1>Price: {products[1].price} $</h1>
-                        <h1>{products[1].quantity} available</h1>
-                        <button onClick={() => test(products[1]._id)}> ADD TO CART</button>
-                    <div className="store-text-block3 borders"></div>
+                <div>
+                    {products.map(product => (
+                        <div key={product._id} className="borders">
+                            <img src={product.image}></img>
+                            <h1>{product.name}</h1>
+                            <h1> $ {product.price}</h1>
+                            <h1>only {product.quantity} still available</h1>
+                            <button onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
+
+                        </div>
+                    ))}
+                    <a href='/checkout'>to checkout nupp</a>
                 </div>
             </div>
         </div>
