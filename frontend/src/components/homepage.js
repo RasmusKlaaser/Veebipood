@@ -1,29 +1,35 @@
-
 import React from "react";
+import './homepage.css';
+import Navbar from './navbar'
+import About from './about'
+import Footer from './footer'
 
-function HomePage(){
-    return(
-        <div id="showcase">
-        <div class="container">
-            <div class="title-card">
-                <p>Surf Board</p>
-            </div>           
+function HomePage() {
+    return (
+        <div className="Showcase">
+            <div className="Showcase-bg-primary">
+                <Navbar/>
+                <div className="Container Page-Height">
+                    <div className="Title">
+                        <div className="Title-card Center Borders-primary">
+                            <h1>Surf Board</h1>
+                        </div>
+                    </div>
+                    <div className="Quote Center">
+                        <p>Ride the waves like never before with our premium surfboards!</p>
+                    </div> 
+                    <div className="Product-list-button-bottom Borders-secondary">
+                        <div className="Product-list-button-top Borders-secondary">
+                            <a href="/store" class="Product-list-button">
+                                Product list
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <About/>
+                <Footer/>         
+            </div> 
         </div>
-        <div class="strike jetbrains-mono">
-            <p> Ride the waves like never before with our premium surfboards!</p>
-        </div>
-        <div class="storeb borders">
-            <div class="storec borders">
-                <a href="store" class="store-strike">
-                    Store
-                </a>
-            </div>
-        </div>
-        <div class="store-follow">
-            <p>Follow us on social media</p>
-        </div>
-        
-    </div> 
     );
 }
 export default HomePage
