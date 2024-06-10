@@ -72,16 +72,33 @@ function Checkout() {
     };
     
     // place order
-    /*
-    function placeOrder(cart, total) {
-        axios.post('/api/orders', {cart, total})
-        .then(response => {
-            console.log('order placed', response.data);
-        })
-        .catch(error => {
-            console.error('error placing order', error);
-        });
-    }*/
+
+    const placeOrder = async (cart, total) => {
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cart, total })
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to place order');
+            }
+    
+            const responseData = await response.json();
+            console.log(responseData.message);
+         
+        } catch (error) {
+            console.error( error);
+
+        }
+    };
+    
+   
+    
     return (
         <>
             <nav id="navbar"></nav>
@@ -104,8 +121,8 @@ function Checkout() {
                     <button onClick={clearCart}>Clear cart</button>
                     <hr />
                     <br />
-                    <div className="billing jetbrains-mono">
-                        <form action="./confirmation.html">
+                    <div >
+                        <form>
                             <label htmlFor="billing-email"></label>
                             <input
                                 className="large-billing borders billing-font"
@@ -141,8 +158,8 @@ function Checkout() {
                             </div>
                             <br />
 
-                            <button  onClick={console.log(2)}>Buy</button>
                         </form>
+                            <button  onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
                         
                     </div>
                 </div>
