@@ -190,7 +190,8 @@
     height: 300px;
     background-color: #E0CBB8;
     display: grid;
-    margin: auto;
+    margin: 0 auto 300px auto;
+    
 } 
 
 #fourth-showcase .fourth-showcase-box-text {
@@ -205,6 +206,6 @@
     width: 250px;
     height: 250px;
     background: url("../img/surf1.jpeg") no-repeat center center/cover;
-    margin:auto
+    margin-left: 300px;
 } 
 

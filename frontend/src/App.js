@@ -6,7 +6,12 @@ import Store from './components/store';
 import Checkout from './components/checkout';
 import Confirmation from './components/confirmation'
 
+
 function App() {
+
+  
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

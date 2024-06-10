@@ -21,12 +21,13 @@ mongoose.connect(uri, {
 
 // this code adds products to the database everytime it runs
 // after adding the product comment the code out
-/*
+
 const newProduct = new ProductModel({
-    id: 4,
-    name: 'product 4',
-    price: 299.99,
-    quantity: 139
+    id: 1,
+    image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQArCJtwpyEhHIctHbrRjnfaV6KCUwi0qmvw_ZLpg1z8h7pnHt9',
+    name: 'product 1',
+    price: 999.99,
+    quantity: 4
 });
 
 // Save the product instance to the database
@@ -37,8 +38,8 @@ newProduct.save()
     .catch(err => {
         console.error(err);
     });
+/*
 
-*/
 const productId = '66621b1aefd89bf86159d491';
 ProductModel.findById(productId)
     .then(product => {
@@ -52,7 +53,7 @@ ProductModel.findById(productId)
         console.error('no retrive', err);
     });
 
-
+*/
 app.use(express.json());
 app.use(cors(corsOptions));
 
