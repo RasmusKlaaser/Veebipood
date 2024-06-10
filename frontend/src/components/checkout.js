@@ -49,6 +49,28 @@ function Checkout() {
         })
         return Math.trunc(total* 100) /100;
     }
+    // item removal
+    const removeItem = (id) => {
+        const updatedCart = { ...JSON.parse(window.localStorage.getItem('cart')) };
+        updatedCart[id]--;
+    
+ 
+        if (updatedCart[id] <= 0) {
+            delete updatedCart[id];
+        }
+    
+        window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+    
+        const updatedCartProducts = cartProducts.filter(product => {
+            if (product._id === id) {
+                return updatedCart[id] > 0; 
+            }
+            return true; 
+        });
+    
+        setCartProducts(updatedCartProducts);
+    };
     
 
     return (
@@ -66,6 +88,7 @@ function Checkout() {
                                 <h1>{product.name}</h1>
                                 <p>${product.price}</p>
                                 <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
+                                <button onClick={() => removeItem(product._id)}> X</button>
                             </div>
                         ))}
                     <h1> Total: ${calculateTotal()}</h1>
