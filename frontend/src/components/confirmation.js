@@ -19,8 +19,12 @@ function Confirmation() {
             <div className="fourth-showcase-box borders">
                 <div className="fourth-showcase-box-text">
                     <p>People that bought the same product also purchased:</p>
+                    <div class="fourth-showcase-box-picture borders"></div>
                 </div>
+<<<<<<< developer-b
                 <div className="fourth-showcase-box-picture borders"></div>
+=======
+>>>>>>> main
             </div>
         </div>
     </div>
