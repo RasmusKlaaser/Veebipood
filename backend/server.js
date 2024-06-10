@@ -1,10 +1,12 @@
+const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://rasmuskuusmaa:sPubZ7j7PralbHWm@cluster0.mbfadvx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const ProductModel = require('./models/product'); 
 const mongoose = require('mongoose')
 const express = require('express');
-const productModel = require('./models/product');
 const app = express()
+
+const corsOptions = {origin: 'http://localhost:3000'}
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -53,6 +55,7 @@ ProductModel.findById(productId)
 
 */
 app.use(express.json());
+app.use(cors(corsOptions));
 
 app.get("/api", (req, res) => {
     res.json({"test": "palun toota"})
