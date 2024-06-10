@@ -1,19 +1,48 @@
 import React, {useEffect, useState} from 'react';
+import { json } from 'react-router-dom';
+
 
 function Checkout() {
-    // Cart clear button
-    console.log(window.localStorage.getItem('cart'))
+
+    const [products, setProducts] = useState([]);
+    const [cartProducts, setCartProducts] = useState([]);
+
+    // clear cart
     const clearCart = () => {
         window.localStorage.removeItem('cart');
-        console.log(window.localStorage.getItem('cart'))
-    }
+        setCartProducts([]); 
+    };
 
-    // calculate total
-    let total = 0;
-    const cart = JSON.parse(window.localStorage.getItem('cart'))
-    console.log(cart)
-    total += cart[0]
-    console.log(total)
+    // Fetch data from database
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    // fetch data from localStorage
+    useEffect(() => {
+        const cartData = window.localStorage.getItem('cart');
+        const storedCart = JSON.parse(cartData);
+        if (storedCart) {
+            console.log(storedCart)
+            const productIds = Object.keys(storedCart);
+            const cartProducts = products.filter(product => productIds.includes(product._id));
+            setCartProducts(cartProducts);
+        }
+    }, [products]);
+    console.log({cartProducts})
+    
 
     return (
         <>
@@ -23,27 +52,17 @@ function Checkout() {
                     <div className="third-showcase-text jetbrains-mono">
                         <p>Checkout</p>
                     </div>
-                    <div className="pricing">
-                        <div className="thumb-box borders">
-                            <div className="thumb-box-pic borders"></div>
-                        </div>
-                        <div className="thumb-text-box">
-                            <div className="thumb-text-left jetbrains-mono">
-                                <p>Product Name</p>
-                                <br />
-                                <p>Shipping</p>
-                                <br />
-                                <p></p>
+                   
+                        {cartProducts.map(product => (
+                            <div key={product.id}>
+                                <img src={product.image}/>
+                                <h1>{product.name}</h1>
+                                <p>${product.price}</p>
+                                <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
                             </div>
-                            <div className="thumb-text-right jetbrains-mono">
-                                <p>{total}€</p>
-                                <br />
-                                <p>0€</p>
-                                <br />
-                                <p>0€</p>
-                            </div>
-                        </div>
-                    </div>
+                        ))}
+              
+                
                     <hr />
                     <br />
                     <div className="billing jetbrains-mono">
