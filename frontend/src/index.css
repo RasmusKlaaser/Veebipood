@@ -13,30 +13,80 @@ body {
   box-sizing: border-box;
 } 
 
+.Text-primary {
+  color: black;
+}
+
+.Text-secondary {
+  color: #333;
+}
+
 a {
   text-decoration: none;
   border: none;
   color: black;
 }  
 
-.container {
+.Container {
   margin: auto;
-  max-width: 1100px;
+  max-width: 1600px;
   padding: 0 20px;
   overflow: auto;
 } 
 
-.borders {
+.Page-Height {
+  height: 1080px;
+}
+
+.Borders-primary {
+  border-color: black;
+  border-radius: 15px;
+  border: 5px;
+  border-style: solid;
+}
+
+.Borders-secondary {
   border-color: black;
   border-radius: 15px;
   border: 2px;
   border-style: solid;
 } 
 
-.left {
+.Left {
   float: left;
 } 
 
-.right {
+.Right {
   float: right;
 } 
+
+.Center {
+  display: grid;
+  margin: auto;	
+}
+
+.Showcase {
+  height: 1080px;
+  width: 100%;
+} 
+
+.Showcase-bg-primary {
+  background: url(../img/pexels-photo-416676.jpeg) no-repeat center center/cover;
+  height: 120%;
+  width: 100%;
+}
+
+.Showcase-bg-secondary {
+  background-color: #D1B398;
+  height: 120%;
+  width: 1600px;
+}
+
+.Showcase-bg-secondary-large {
+  background-color: #D1B398;
+  width: 100%;
+}
+
+.Showcase-blur {
+  backdrop-filter: blur(5px);
+}
