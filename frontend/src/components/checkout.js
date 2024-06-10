@@ -29,7 +29,6 @@ function Checkout() {
         };
         fetchData();
     }, []);
-
     // fetch data from localStorage
     useEffect(() => {
         const cartData = window.localStorage.getItem('cart');
@@ -42,6 +41,14 @@ function Checkout() {
         }
     }, [products]);
     console.log({cartProducts})
+    // calculate total
+    const calculateTotal = () => {
+        let total = 0;
+        cartProducts.forEach(product => {
+            total += product.price * JSON.parse(window.localStorage.getItem('cart'))[product._id];
+        })
+        return Math.trunc(total* 100) /100;
+    }
     
 
     return (
@@ -61,8 +68,7 @@ function Checkout() {
                                 <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
                             </div>
                         ))}
-              
-                
+                    <h1> Total: ${calculateTotal()}</h1>
                     <hr />
                     <br />
                     <div className="billing jetbrains-mono">
