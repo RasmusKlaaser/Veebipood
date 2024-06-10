@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { json } from 'react-router-dom';
-
+import axios from 'axios'
 
 function Checkout() {
 
@@ -72,7 +72,16 @@ function Checkout() {
         setCartProducts(updatedCartProducts);
     };
     
-
+    // place order
+    function placeOrder(cart, total) {
+        axios.post('/api/orders', {cart, total})
+        .then(response => {
+            console.log('order placed', response.data);
+        })
+        .catch(error => {
+            console.error('error placing order', error);
+        });
+    }
     return (
         <>
             <nav id="navbar"></nav>
@@ -132,8 +141,7 @@ function Checkout() {
                             </div>
                             <br />
 
-                            <a href='confirmation' > Buy
-                                </a>
+                            <button  onClick={placeOrder('test', 2)}>Buy</button>
                         </form>
                         
                     </div>

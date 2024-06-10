@@ -55,6 +55,7 @@ ProductModel.findById(productId)
 
 */
 
+//add new order
 function newOrder(cart, total) {
     const newOrder = new orderModel({
         cart: cart,
@@ -68,7 +69,16 @@ function newOrder(cart, total) {
             console.error(err);
         });
 }
-newOrder('order', 2)
+app.post('/api/orders', async (req, res) => {
+    try {
+        const {cart, total} = req.body;
+        await newOrder(cart, total);
+        console.log('order placed')
+    } catch (err){
+        console.error(err);
+    }
+})
+
 app.use(express.json());
 
 app.get("/api", (req, res) => {
