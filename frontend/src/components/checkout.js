@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { json } from 'react-router-dom';
-import axios from 'axios'
 
 function Checkout() {
 
@@ -17,7 +16,7 @@ function Checkout() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('http://localhost:5000/api/products');
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
@@ -73,6 +72,7 @@ function Checkout() {
     };
     
     // place order
+    /*
     function placeOrder(cart, total) {
         axios.post('/api/orders', {cart, total})
         .then(response => {
@@ -81,7 +81,7 @@ function Checkout() {
         .catch(error => {
             console.error('error placing order', error);
         });
-    }
+    }*/
     return (
         <>
             <nav id="navbar"></nav>
@@ -141,7 +141,7 @@ function Checkout() {
                             </div>
                             <br />
 
-                            <button  onClick={placeOrder('test', 2)}>Buy</button>
+                            <button  onClick={console.log(2)}>Buy</button>
                         </form>
                         
                     </div>
