@@ -1,12 +1,78 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { json } from 'react-router-dom';
+
 
 function Checkout() {
-    console.log(window.localStorage.getItem('cart'))
+
+    const [products, setProducts] = useState([]);
+    const [cartProducts, setCartProducts] = useState([]);
+
+    // clear cart
     const clearCart = () => {
         window.localStorage.removeItem('cart');
-        console.log(window.localStorage.getItem('cart'))
-        
+        setCartProducts([]); 
+    };
+
+    // Fetch data from database
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchData();
+    }, []);
+    // fetch data from localStorage
+    useEffect(() => {
+        const cartData = window.localStorage.getItem('cart');
+        const storedCart = JSON.parse(cartData);
+        if (storedCart) {
+            console.log(storedCart)
+            const productIds = Object.keys(storedCart);
+            const cartProducts = products.filter(product => productIds.includes(product._id));
+            setCartProducts(cartProducts);
+        }
+    }, [products]);
+    console.log({cartProducts})
+    // calculate total
+    const calculateTotal = () => {
+        let total = 0;
+        cartProducts.forEach(product => {
+            total += product.price * JSON.parse(window.localStorage.getItem('cart'))[product._id];
+        })
+        return Math.trunc(total* 100) /100;
     }
+    // item removal
+    const removeItem = (id) => {
+        const updatedCart = { ...JSON.parse(window.localStorage.getItem('cart')) };
+        updatedCart[id]--;
+    
+ 
+        if (updatedCart[id] <= 0) {
+            delete updatedCart[id];
+        }
+    
+        window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+    
+        const updatedCartProducts = cartProducts.filter(product => {
+            if (product._id === id) {
+                return updatedCart[id] > 0; 
+            }
+            return true; 
+        });
+    
+        setCartProducts(updatedCartProducts);
+    };
+    
+
     return (
         <>
             <nav id="navbar"></nav>
@@ -15,27 +81,17 @@ function Checkout() {
                     <div className="third-showcase-text jetbrains-mono">
                         <p>Checkout</p>
                     </div>
-                    <div className="pricing">
-                        <div className="thumb-box borders">
-                            <div className="thumb-box-pic borders"></div>
-                        </div>
-                        <div className="thumb-text-box">
-                            <div className="thumb-text-left jetbrains-mono">
-                                <p>Product Name</p>
-                                <br />
-                                <p>Shipping</p>
-                                <br />
-                                <p>Total</p>
+                   
+                        {cartProducts.map(product => (
+                            <div key={product.id}>
+                                <img src={product.image}/>
+                                <h1>{product.name}</h1>
+                                <p>${product.price}</p>
+                                <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
+                                <button onClick={() => removeItem(product._id)}> X</button>
                             </div>
-                            <div className="thumb-text-right jetbrains-mono">
-                                <p>0€</p>
-                                <br />
-                                <p>0€</p>
-                                <br />
-                                <p>0€</p>
-                            </div>
-                        </div>
-                    </div>
+                        ))}
+                    <h1> Total: ${calculateTotal()}</h1>
                     <hr />
                     <br />
                     <div className="billing jetbrains-mono">
