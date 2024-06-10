@@ -4,6 +4,7 @@ const ProductModel = require('./models/product');
 const mongoose = require('mongoose')
 const express = require('express');
 const productModel = require('./models/product');
+const orderModel = require('./models/order');
 const app = express()
 
 mongoose.connect(uri, {
@@ -19,7 +20,7 @@ mongoose.connect(uri, {
 
 // this code adds products to the database everytime it runs
 // after adding the product comment the code out
-
+/*
 const newProduct = new ProductModel({
     id: 1,
     image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQArCJtwpyEhHIctHbrRjnfaV6KCUwi0qmvw_ZLpg1z8h7pnHt9',
@@ -36,7 +37,8 @@ newProduct.save()
     .catch(err => {
         console.error(err);
     });
-/*
+*/
+    /*
 
 const productId = '66621b1aefd89bf86159d491';
 ProductModel.findById(productId)
@@ -52,6 +54,21 @@ ProductModel.findById(productId)
     });
 
 */
+
+function newOrder(cart, total) {
+    const newOrder = new orderModel({
+        cart: cart,
+        total: total,
+    });
+    newOrder.save()
+        .then(savedOrder => {
+            console.log('order saved:', savedOrder);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+newOrder('order', 2)
 app.use(express.json());
 
 app.get("/api", (req, res) => {

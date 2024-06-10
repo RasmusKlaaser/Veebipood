@@ -92,6 +92,7 @@ function Checkout() {
                             </div>
                         ))}
                     <h1> Total: ${calculateTotal()}</h1>
+                    <button onClick={clearCart}>Clear cart</button>
                     <hr />
                     <br />
                     <div className="billing jetbrains-mono">
@@ -131,10 +132,10 @@ function Checkout() {
                             </div>
                             <br />
 
-                            <a href='confirmation' > ajutine  nupp
+                            <a href='confirmation' > Buy
                                 </a>
                         </form>
-                            <button onClick={clearCart}>Clear cart</button>
+                        
                     </div>
                 </div>
             </div>
