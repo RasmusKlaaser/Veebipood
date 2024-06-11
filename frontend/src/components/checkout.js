@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { json, Navigate, useNavigate } from 'react-router-dom';
 
-import './checkout.css';
-import './store.css';
-import Navbar from './navbar';
-import Footer from './footer';
-
 function Checkout() {
+
     const [products, setProducts] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
 
@@ -120,26 +116,22 @@ function Checkout() {
     };
 
     // ooh keegi ostis midagi
-    const navigate = useNavigate();
+    const Navigate = useNavigate();
     const placeOrder = async () => {
-        
         const cart = JSON.parse(window.localStorage.getItem('cart'));
         const total = calculateTotal();
     
         try {
-
-            for (let id in cart) {
-                await handleQuantity(id, cart[id]);
-            }
-            const cartString = JSON.stringify(cart);
-            
          
+            const cartString = JSON.stringify(cart);
+    
+   
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-              
+            
                 body: JSON.stringify({ cart: cartString, total })
             });
     
@@ -155,88 +147,81 @@ function Checkout() {
         } catch (error) {
             console.error('Error placing order:', error);
         }
-        clearCart();
-        if (cart) {
-
-            navigate('/confirmation');
-        } 
+        Navigate('/confirmation')
     };
 
-    
     
    
     
     return (
-        <div className='Showcase'>
-            <div className="Showcase-bg-blank">
-                <Navbar/>
-                <div className='Container'>
-                    <div className='Title-checkout'>
-                        <h1>Checkout</h1>
+        <>
+            <nav id="navbar"></nav>
+            <div id="third-showcase">
+                <div className="container">
+                    <div className="third-showcase-text jetbrains-mono">
+                        <p>Checkout</p>
                     </div>
-                    <hr className='Division-line Borders-secondary' />
-                    {cartProducts.map(product => (
-                        <div className='Product-item Text-body Borders-secondary' key={product.id}>
-                            <img className='Img Left Borders-secondary' src={product.image}/>
-                            <div className='Product-info'>
-                                <h1 className='Product-name Left'>{product.name}</h1>
-                                <h1 className='Product-price Right'>$ {product.price}</h1>
-                                <div className='Item-quantity'>
-                                    <ul>
-                                        <button className='Add-from-cart-button Borders-secondary' onClick={() => addItem(product._id)}>+</button>
-                                        <h1 className='From-quantity Text-secondary'><span className='Product-amount Text-primary'>{JSON.parse(window.localStorage.getItem('cart'))[product._id]}x</span> </h1>
-                                        <button className='Remove-from-cart-button Borders-secondary' onClick={() => removeItem(product._id)}>-</button>
-                                    </ul>
+                   
+                        {cartProducts.map(product => (
+                            <div key={product.id}>
+                                <img src={product.image}/>
+                                <h1>{product.name}</h1>
+                                <p>${product.price}</p>
+                                <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
+                                <button onClick={() => removeItem(product._id)}> X</button>
+                                <button onClick={() => addItem(product._id)}>+</button>
+                
+                                
+                                    
                                 </div>
-                            </div>
-                        </div>
-                    ))}
-                    <div className='Total'>
-                        <h1 className='Total-name Left'>Total:</h1>
-                        <h1 className='Total-price Right'>$ {calculateTotal()}</h1>
-                    </div>
-                    <hr className='Division-line Borders-secondary' />
-                    <form className='Form Center'>
-                        <label htmlFor="billing-email"></label>
-                        <input
-                            className="Form-large Text-body Borders-secondary billing-font"
-                            type="email"
-                            id="billing-email"
-                            name="email"
-                            placeholder="Example@gmail.com"
-                        />
-                        <br />
-                        <input
-                              className="Form-large Text-body Borders-secondary billing-font"
-                            type="text"
-                            id="billing-card-info"
-                            name="card-info"
-                            placeholder="Card information"
-                        />
-                        <br />
-                        <div>
+                                    ))}
+                    <h1> Total: ${calculateTotal()}</h1>
+                    <button onClick={clearCart}>Clear cart</button>
+                    <hr />
+                    <br />
+                    <div >
+                        <form>
+                            <label htmlFor="billing-email"></label>
                             <input
-                                className="Form-small Left Text-body Borders-secondary billing-font left"
-                                type="text"
-                                id="billing-mm-yy"
-                                name="mm/yy"
-                                placeholder="MM/YY"
+                                className="large-billing borders billing-font"
+                                type="email"
+                                id="billing-email"
+                                name="email"
+                                placeholder="Example@gmail.com"
                             />
-                             <input
-                                className="Form-small Right Text-body Borders-secondary billing-font right"
+                            <br />
+                            <input
+                                className="large-billing borders billing-font"
                                 type="text"
-                                id="billing-cvc"
-                                name="cvc"
-                                placeholder="CVC"
+                                id="billing-card-info"
+                                name="card-info"
+                                placeholder="Card information"
                             />
-                        </div>
-                    </form>
-                    <button className='Checkout-button Left Borders-secondary' onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Purchase</button>
-                    <button className='Checkout-button Right Borders-secondary' onClick={clearCart}>Clear cart</button>    
+                            <br />
+                            <div>
+                                <input
+                                    className="small-billing borders billing-font left"
+                                    type="text"
+                                    id="billing-mm-yy"
+                                    name="mm/yy"
+                                    placeholder="MM/YY"
+                                />
+                                <input
+                                    className="small-billing borders billing-font right"
+                                    type="text"
+                                    id="billing-cvc"
+                                    name="cvc"
+                                    placeholder="CVC"
+                                />
+                            </div>
+                            <br />
+
+                        </form>
+                            <button  onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
+                    </div>
                 </div>
-                <Footer/>
             </div>
-        </div>
+        </>
     );
 }
 
