@@ -39,7 +39,17 @@ function Store() {
                     throw new Error('Failed to fetch products');
                 }
                 const data = await response.json();
+<<<<<<< developer-b
+                console.log('data:', data);
+                // List of product IDs
+                const productIDs = ['66621af72210b19e6267b512', '66621b03e231f0219de61084'];
+
+                // Filter products based on the provided IDs
+                const filteredProducts = data.filter(product => productIDs.includes(product._id));
+                setProducts(filteredProducts);
+=======
                 setProducts(data);
+>>>>>>> main
             } catch (error) {
                 console.error('Error fetching products:', error);
             }

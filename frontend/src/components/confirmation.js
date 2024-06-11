@@ -21,7 +21,10 @@ function Confirmation() {
                     <p>People that bought the same product also purchased:</p>
                     <div class="fourth-showcase-box-picture borders"></div>
                 </div>
-                <div class="fourth-showcase-box-picture borders"></div>
+<<<<<<< developer-b
+                <div className="fourth-showcase-box-picture borders"></div>
+=======
+>>>>>>> main
             </div>
         </div>
     </div>
