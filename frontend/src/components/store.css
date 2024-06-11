@@ -1,0 +1,86 @@
+.Product-Outline {
+    outline: solid 2px black;
+} 
+
+.Title-product {
+    width: 100%;
+    height: 100px;
+    font-size: 40px;
+    margin: 100px 0 20px 0;
+}
+
+.Product {
+    width: 100%;
+    height: 700px;
+}
+
+.Product-item {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.Product-info {
+    float: right;
+    width: 75%;
+}
+
+.Product-name {
+    font-size: 50px;
+    width: 75%;
+    margin-bottom: 100px;
+}
+
+.Product-price {
+    text-align: right;
+    font-size: 50px;
+    width: 25%;
+    margin-bottom: 100px;
+}
+
+.Product-quantity {
+    font-size: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.Product-amount {
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+.Add-to-cart-button {
+    width: 15%;
+    height: 40px;
+    background-color: rgb(207, 195, 183);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Add-to-cart-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
+}
+
+.To-checkout {
+    width: 400px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.To-checkout-button {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(207, 195, 183);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    align-content: center;
+}
+
+.To-checkout-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
+}

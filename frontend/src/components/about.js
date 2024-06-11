@@ -3,7 +3,7 @@ import './about.css';
 
 function About() {
     return (
-        <div id="about" className='Showcase-bg-secondary-large'>
+        <div id="about" className='Showcase-bg-secondary'>
             <div className="Container Center">
                 <div className="Center">
                     <div className='Title-about'>
@@ -13,7 +13,7 @@ function About() {
                 <div className='Mission-title'>
                     <h2>Our Mission</h2>
                 </div>
-                <div className='Mission-body Center Borders-secondary Text-secondary'>
+                <div className='Mission-body Text-body Center Borders-secondary Text-secondary'>
                     <p>
                         Our mission is to provide the best surfboards for the best prices. 
                         We have been in the business for over 20 years and have been able to provide our customers with the best surfboards available. 
@@ -25,7 +25,7 @@ function About() {
                 <div className='Values-title'>
                     <h2>Our Values</h2>
                 </div>
-                <div className='Values-body Center Borders-secondary Text-secondary'>
+                <div className='Values-body Text-body Center Borders-secondary Text-secondary'>
                     <ul>
                         <li>Our values are what set us apart from other surfboard companies.</li>
                         <li>We are committed to providing the best customer service and the best surfboards available.</li>

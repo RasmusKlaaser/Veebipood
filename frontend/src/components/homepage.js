@@ -18,12 +18,8 @@ function HomePage() {
                     <div className="Quote Center">
                         <p>Ride the waves like never before with our premium surfboards!</p>
                     </div> 
-                    <div className="Product-list-button-bottom Borders-secondary">
-                        <div className="Product-list-button-top Borders-secondary">
-                            <a href="/store" class="Product-list-button">
-                                Product list
-                            </a>
-                        </div>
+                    <div className="Product-list Text-body Borders-secondary Center">
+                        <a href="/store" class="Product-list-button Borders-secondary">Product list</a>
                     </div>
                 </div>
                 <About/>

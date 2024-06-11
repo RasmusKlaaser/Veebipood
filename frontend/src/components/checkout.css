@@ -1,0 +1,116 @@
+.Title-checkout {
+    width: 100%;
+    height: 100px;
+    font-size: 40px;
+    margin: 100px 0 20px 0;
+}
+
+.Item-quantity {
+    float: left;
+    width: 100%;
+    height: 100px;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.Item-quantity ul {
+    list-style-type: none;
+    margin-bottom: 100px;
+    padding: 50px 0 0 0;
+    display: flex;
+}
+
+.From-quantity {
+    font-size: 30px;
+    width: 75px;
+    margin-bottom: 20px;
+    padding-top: 1.5px;
+}
+
+.Remove-from-cart-button {
+    width: 5%;
+    height: 40px;
+    background-color: rgb(207, 195, 183);
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.Remove-from-cart-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
+}
+
+.Add-from-cart-button {
+    width: 5%;
+    height: 40px;
+    background-color: rgb(207, 195, 183);
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.Add-from-cart-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
+}
+
+.Total {
+    width: 100%;
+    padding:  0 1.5% 0 26%;
+    height: 100px;
+}
+
+.Total-name {
+    font-size: 50px;
+    width: 50%;
+}
+
+.Total-price {
+    text-align: right;
+    font-size: 50px;
+    width: 50%;
+}
+
+.Division-line {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-bottom: 40px;
+}
+
+.Form {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.Form-large {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.Form-small {
+    width: 49%;
+    height: 80px;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.Checkout-button {
+    width: 15%;
+    height: 60px;
+    background-color: rgb(207, 195, 183);
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 100px;
+}
+
+.Checkout-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
+}
