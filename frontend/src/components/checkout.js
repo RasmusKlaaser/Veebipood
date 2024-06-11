@@ -124,26 +124,26 @@ function Checkout() {
     const navigate = useNavigate();
 
 const placeOrder = async () => {
-    // Retrieve cart from localStorage
+  
     const cart = JSON.parse(window.localStorage.getItem('cart'));
-    // Calculate total amount for the order
+
     const total = calculateTotal();
 
     try {
-        // Ensure the cart is not null and total is greater than 0
+  
         if (total > 0) {
             
-            // Handle quantity updates for each item in the cart
+          
             for (let id in cart) {
                 await handleQuantity(id, cart[id]);
             }
 
-            // Stringify the cart for the request body
+      
             const cartString = JSON.stringify(cart);
             clearCart();    
             navigate("/confirmation");
             
-            // Make a POST request to create a new order
+        
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
@@ -204,7 +204,7 @@ const placeOrder = async () => {
                     </div>
                     <hr className='Division-line Borders-secondary' />
                     <form className='Form Center'>
-                        <label htmlFor="billing-email"></label>
+                        <label htmlFor="billing-email">Email Address</label>
                         <input
                             className="Form-large Text-body Borders-secondary"
                             type="email"
@@ -213,6 +213,8 @@ const placeOrder = async () => {
                             placeholder="Example@gmail.com"
                         />
                         <br />
+                        
+                        <label htmlFor="billing-card-info">Card Information</label>
                         <input
                             className="Form-large Text-body Borders-secondary"
                             type="text"
@@ -220,24 +222,33 @@ const placeOrder = async () => {
                             name="card-info"
                             placeholder="Card information"
                         />
-                        <br />
-                        <div>
-                            <input
-                                className="Form-small Left Text-body Borders-secondary"
-                                type="text"
-                                id="billing-mm-yy"
-                                name="mm/yy"
-                                placeholder="MM/YY"
-                            />
-                            <input
-                                className="Form-small Right Text-body Borders-secondary"
-                                type="text"
-                                id="billing-cvc"
-                                name="cvc"
-                                placeholder="CVC"
-                            />
+                        
+                        <div className="Form-row">
+                            <div className="Form-group small">
+                                <label htmlFor="billing-mm-yy">Expiration Date</label>
+                                <input
+                                    className="Form-small Text-body Borders-secondary"
+                                    type="text"
+                                    id="billing-mm-yy"
+                                    name="mm/yy"
+                                    placeholder="MM/YY"
+                                />
+                            </div>
+                            <div className="Form-group small">
+                                <label htmlFor="billing-cvc">CVC</label>
+                                <input
+                                    className="Form-small Text-body Borders-secondary"
+                                    type="text"
+                                    id="billing-cvc"
+                                    name="cvc"
+                                    placeholder="CVC"
+                                />
+                            </div>
                         </div>
                     </form>
+                    <br/>
+                    <br/>
+                    <br></br>
                     <button className='Checkout-button Left Borders-secondary' onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Purchase</button>
                     <button className='Checkout-button Right Borders-secondary' onClick={clearCart}>Clear cart</button>    
                 </div>
