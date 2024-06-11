@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { json } from 'react-router-dom';
 
-
 function Checkout() {
 
     const [products, setProducts] = useState([]);
@@ -17,7 +16,7 @@ function Checkout() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('http://localhost:5000/api/products');
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
@@ -72,7 +71,34 @@ function Checkout() {
         setCartProducts(updatedCartProducts);
     };
     
+    // place order
 
+    const placeOrder = async (cart, total) => {
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cart, total })
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to place order');
+            }
+    
+            const responseData = await response.json();
+            console.log(responseData.message);
+         
+        } catch (error) {
+            console.error( error);
+
+        }
+    };
+    
+   
+    
     return (
         <>
             <nav id="navbar"></nav>
@@ -92,10 +118,11 @@ function Checkout() {
                             </div>
                         ))}
                     <h1> Total: ${calculateTotal()}</h1>
+                    <button onClick={clearCart}>Clear cart</button>
                     <hr />
                     <br />
-                    <div className="billing jetbrains-mono">
-                        <form action="./confirmation.html">
+                    <div >
+                        <form>
                             <label htmlFor="billing-email"></label>
                             <input
                                 className="large-billing borders billing-font"
@@ -131,10 +158,9 @@ function Checkout() {
                             </div>
                             <br />
 
-                            <a href='confirmation' > ajutine  nupp
-                                </a>
                         </form>
-                            <button onClick={clearCart}>Clear cart</button>
+                            <button  onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
+                        
                     </div>
                 </div>
             </div>

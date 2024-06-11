@@ -4,6 +4,8 @@ const uri = "mongodb+srv://rasmuskuusmaa:sPubZ7j7PralbHWm@cluster0.mbfadvx.mongo
 const ProductModel = require('./models/product'); 
 const mongoose = require('mongoose')
 const express = require('express');
+const productModel = require('./models/product');
+const orderModel = require('./models/order');
 const app = express()
 
 const corsOptions = {origin: 'http://localhost:3000'}
@@ -21,7 +23,7 @@ mongoose.connect(uri, {
 
 // this code adds products to the database everytime it runs
 // after adding the product comment the code out
-
+/*
 const newProduct = new ProductModel({
     id: 1,
     image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQArCJtwpyEhHIctHbrRjnfaV6KCUwi0qmvw_ZLpg1z8h7pnHt9',
@@ -38,7 +40,8 @@ newProduct.save()
     .catch(err => {
         console.error(err);
     });
-/*
+*/
+    /*
 
 const productId = '66621b1aefd89bf86159d491';
 ProductModel.findById(productId)
@@ -54,6 +57,31 @@ ProductModel.findById(productId)
     });
 
 */
+
+//add new order
+function newOrder(cart, total) {
+    const newOrder = new orderModel({
+        cart: cart,
+        total: total,
+    });
+    newOrder.save()
+        .then(savedOrder => {
+            console.log('order saved:', savedOrder);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+app.post('/api/orders', async (req, res) => {
+    try {
+        const {cart, total} = req.body;
+        await newOrder(cart, total);
+        console.log('order placed')
+    } catch (err){
+        console.error(err);
+    }
+})
+
 app.use(express.json());
 app.use(cors(corsOptions));
 
