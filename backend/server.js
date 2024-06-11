@@ -9,6 +9,8 @@ const orderModel = require('./models/order');
 const app = express()
 
 const corsOptions = {origin: 'http://localhost:3000'}
+app.use(express.json());
+
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -60,6 +62,7 @@ ProductModel.findById(productId)
 
 //add new order
 function newOrder(cart, total) {
+    console.log('new order')
     const newOrder = new orderModel({
         cart: cart,
         total: total,
@@ -73,14 +76,17 @@ function newOrder(cart, total) {
         });
 }
 app.post('/api/orders', async (req, res) => {
+    console.log('test');
     try {
-        const {cart, total} = req.body;
+        const { cart, total } = req.body;
+       
         await newOrder(cart, total);
-        console.log('order placed')
-    } catch (err){
-        console.error(err);
+        res.status(201).json({ message: 'Order placed successfully' });
+    } catch (error) {
+        console.error('Error placing order:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
 
 app.use(express.json());
 app.use(cors(corsOptions));

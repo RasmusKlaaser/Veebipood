@@ -71,31 +71,65 @@ function Checkout() {
         setCartProducts(updatedCartProducts);
     };
     
-    // place order
+    // decrement product value
+    const handleQuantity = async (id, quant) => {
+        const product = products.find(product => product._id === id);
+        if (product && product.quantity > 0) {
+            const updatedProduct = { ...product, quantity: product.quantity - quant };
+            setProducts(prevProducts =>
+                prevProducts.map(p => (p._id === id ? updatedProduct : p))
+            );
 
-    const placeOrder = async (cart, total) => {
+            try {
+                const response = await fetch(`http://localhost:5000/api/products/${product._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }, 
+                    body: JSON.stringify(updatedProduct),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update product');
+                }
+            } catch (error) {
+                console.error('Error updating product:', error);
+            }
+        }
+    };
+
+    // Handle order
+    const placeOrder = async () => {
+        const cart = JSON.parse(window.localStorage.getItem('cart'));
+        const total = calculateTotal();
+
         try {
-            const response = await fetch('/api/orders', {
+            for (let id in cart) {
+                await handleQuantity(id, cart[id]);
+            }
+
+            const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ cart, total })
             });
-    
+
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to place order');
             }
-    
+
             const responseData = await response.json();
             console.log(responseData.message);
-         
-        } catch (error) {
-            console.error( error);
+            clearCart(); // Clear cart after placing order
 
+        } catch (error) {
+            console.error('Error placing order:', error);
         }
     };
+
     
    
     
