@@ -10,7 +10,20 @@ const orderSchema = new mongoose.Schema({
     email: {
         type:String,
         Trim: true
-    }
+    },
+    CardInfo: {
+        type: String,
+        trim: true
+    },
+    expirationDate: {
+        type: String,
+        trim: true
+    },
+    CVC: {
+        type: String,
+        trim: true
+    },
+
 }, {
     timestamps: true 
 });

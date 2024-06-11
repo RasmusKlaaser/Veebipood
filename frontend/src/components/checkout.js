@@ -10,7 +10,17 @@ function Checkout() {
 
     const [products, setProducts] = useState([]);
     const [cartProducts, setCartProducts] = useState([]);
+    const [formData, setFormData] = useState({
+        email: ''
+    });
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
     // clear cart
     const clearCart = () => {
         window.localStorage.removeItem('cart');
@@ -123,47 +133,48 @@ function Checkout() {
     // ooh keegi ostis midagi
     const navigate = useNavigate();
 
-const placeOrder = async () => {
+    const placeOrder = async () => {
   
-    const cart = JSON.parse(window.localStorage.getItem('cart'));
+        const cart = JSON.parse(window.localStorage.getItem('cart'));
 
-    const total = calculateTotal();
-
-    try {
-  
-        if (total > 0) {
-            
-          
-            for (let id in cart) {
-                await handleQuantity(id, cart[id]);
-            }
-
-      
-            const cartString = JSON.stringify(cart);
-            clearCart();    
-            navigate("/confirmation");
-            
+        const total = calculateTotal();
+        const email =  formData.email;
         
-            const response = await fetch('http://localhost:5000/api/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ cart: cartString, total })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to place order');
-            }
-
-          
-            const responseData = await response.json();
-            console.log(responseData.message);
+        try {
+    
+            if (total > 0) {
+                
+            
+                for (let id in cart) {
+                    await handleQuantity(id, cart[id]);
+                }
 
         
+                const cartString = JSON.stringify(cart);
+                clearCart();    
+                navigate("/confirmation");
+                
             
-        }
+                const response = await fetch('http://localhost:5000/api/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ cart: cartString, total,email})
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to place order');
+                }
+
+            
+                const responseData = await response.json();
+                console.log(responseData.message);
+
+            
+                
+            }
     } catch (error) {
         
         console.error('Error placing order:', error);
@@ -211,16 +222,20 @@ const placeOrder = async () => {
                             id="billing-email"
                             name="email"
                             placeholder="Example@gmail.com"
+                            value={formData.email}
+                            onChange={handleChange}
                         />
                         <br />
                         
-                        <label htmlFor="billing-card-info">Card Information</label>
+                        <label >Card Information</label>
                         <input
                             className="Form-large Text-body Borders-secondary"
                             type="text"
                             id="billing-card-info"
                             name="card-info"
                             placeholder="Card information"
+                            value={formData.cardInfo}
+                            onChange={handleChange}
                         />
                         
                         <div className="Form-row">
@@ -232,6 +247,8 @@ const placeOrder = async () => {
                                     id="billing-mm-yy"
                                     name="mm/yy"
                                     placeholder="MM/YY"
+                                    value={formData.Cardexpire}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className="Form-group small">
@@ -242,9 +259,12 @@ const placeOrder = async () => {
                                     id="billing-cvc"
                                     name="cvc"
                                     placeholder="CVC"
+                                    value={formData.cvc}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
+                        <submit></submit>
                     </form>
                     <br/>
                     <br/>

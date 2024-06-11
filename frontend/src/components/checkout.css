@@ -114,3 +114,32 @@
     background-color: rgb(246, 230, 214);
     color: #333;
 }
+.Form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.Form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.Form-group.small {
+    flex: 1;
+}
+
+.Form-large {
+    width: 100%;
+}
+
+.Form-small {
+    width: 100%;
+
+}
+label {
+    font-size: 30px;
+}
+
+
