@@ -121,22 +121,23 @@ function Checkout() {
     };
 
     // ooh keegi ostis midagi
+    const Navigate = useNavigate();
     const navigate = useNavigate();
     const placeOrder = async () => {
         const cart = JSON.parse(window.localStorage.getItem('cart'));
         const total = calculateTotal();
     
         try {
-            // Convert cart object to string
+         
             const cartString = JSON.stringify(cart);
     
-            // Send the order request to the backend
+   
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                // Pass the cart as a string
+            
                 body: JSON.stringify({ cart: cartString, total })
             });
     
@@ -162,7 +163,7 @@ function Checkout() {
         <div className='Showcase'>
             <div className="Showcase-bg-blank">
                 <Navbar/>
-                <div className='Container Min-Page-Height'>
+                <div className='Container'>
                     <div className='Title-checkout'>
                         <h1>Checkout</h1>
                     </div>
@@ -191,7 +192,7 @@ function Checkout() {
                     <form className='Form Center'>
                         <label htmlFor="billing-email"></label>
                         <input
-                            className="Form-large Text-body Borders-secondary billing-font"
+                            className="Form-large Text-body Borders-secondary"
                             type="email"
                             id="billing-email"
                             name="email"
@@ -199,7 +200,7 @@ function Checkout() {
                         />
                         <br />
                         <input
-                              className="Form-large Text-body Borders-secondary billing-font"
+                            className="Form-large Text-body Borders-secondary"
                             type="text"
                             id="billing-card-info"
                             name="card-info"
@@ -208,14 +209,14 @@ function Checkout() {
                         <br />
                         <div>
                             <input
-                                className="Form-small Left Text-body Borders-secondary billing-font left"
+                                className="Form-small Left Text-body Borders-secondary"
                                 type="text"
                                 id="billing-mm-yy"
                                 name="mm/yy"
                                 placeholder="MM/YY"
                             />
-                             <input
-                                className="Form-small Right Text-body Borders-secondary billing-font right"
+                            <input
+                                className="Form-small Right Text-body Borders-secondary"
                                 type="text"
                                 id="billing-cvc"
                                 name="cvc"
