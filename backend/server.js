@@ -61,15 +61,12 @@ ProductModel.findById(productId)
 */
 
 //add new order
-function newOrder(cart, total, email, cardInfo, Expirationdate, cvc) {
+function newOrder(cart, total, email) {
     console.log('new order')
     const newOrder = new orderModel({
         cart: cart,
         total: total,
         email: email,
-        cardInfo: cardInfo,
-        expirationDate: Expirationdate,
-        cvc: cvc
     });
     newOrder.save()
         .then(savedOrder => {
@@ -82,9 +79,9 @@ function newOrder(cart, total, email, cardInfo, Expirationdate, cvc) {
 app.post('/api/orders', async (req, res) => {
     console.log('test');
     try {
-        const { cart, total, email, cardInfo, Expirationdate, cvc } = req.body;
+        const { cart, total, email} = req.body;
        
-        await newOrder(cart, total, email,cardInfo, Expirationdate, cvc);
+        await newOrder(cart, total, email);
         res.status(201).json({ message: 'Order placed successfully' });
     } catch (error) {
         console.error('Error placing order:', error);
