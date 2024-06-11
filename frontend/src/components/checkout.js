@@ -70,6 +70,23 @@ function Checkout() {
     
         setCartProducts(updatedCartProducts);
     };
+    // add item
+    const addItem = (id) => {
+        const updatedCart = { ...JSON.parse(window.localStorage.getItem('cart')) };
+        updatedCart[id]++;
+    
+ 
+        window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+    
+        const updatedCartProducts = cartProducts.filter(product => {
+            if (product._id === id) {
+                return updatedCart[id] > 0; 
+            }
+            return true; 
+    });
+    setCartProducts(updatedCartProducts);
+    };
     
     // less product :(
     const handleQuantity = async (id, quant) => {
@@ -149,6 +166,7 @@ function Checkout() {
                                 <p>${product.price}</p>
                                 <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
                                 <button onClick={() => removeItem(product._id)}> X</button>
+                                <button onClick={() => addItem(product._id)}>+</button>
                             </div>
                         ))}
                     <h1> Total: ${calculateTotal()}</h1>
@@ -202,4 +220,4 @@ function Checkout() {
     );
 }
 
-export default Checkout;
+export default Checkout
