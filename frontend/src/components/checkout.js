@@ -73,21 +73,21 @@ function Checkout() {
     // add item
     const addItem = (id) => {
         const updatedCart = { ...JSON.parse(window.localStorage.getItem('cart')) };
-        updatedCart[id]++;
+        const product = cartProducts.find(product => product._id === id);
     
- 
-        window.localStorage.setItem('cart', JSON.stringify(updatedCart));
-    
-    
-        const updatedCartProducts = cartProducts.filter(product => {
-            if (product._id === id) {
-                return updatedCart[id] > 0; 
-            }
-            return true; 
-    });
-    setCartProducts(updatedCartProducts);
-    };
-    
+        if (product && updatedCart[id] < product.quantity) {
+            updatedCart[id] = (updatedCart[id] || 0) + 1;
+            window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+            
+            setCartProducts(cartProducts.map(product => {
+                if (product._id === id) {
+                    return { ...product };
+                }
+                return product;
+            }));
+        }
+    }
+
     // less product :(
     const handleQuantity = async (id, quant) => {
         const product = products.find(product => product._id === id);
@@ -167,8 +167,11 @@ function Checkout() {
                                 <h1> * {JSON.parse(window.localStorage.getItem('cart'))[product._id]} </h1>
                                 <button onClick={() => removeItem(product._id)}> X</button>
                                 <button onClick={() => addItem(product._id)}>+</button>
-                            </div>
-                        ))}
+                
+                                
+                                    
+                                </div>
+                                    ))}
                     <h1> Total: ${calculateTotal()}</h1>
                     <button onClick={clearCart}>Clear cart</button>
                     <hr />
@@ -212,6 +215,7 @@ function Checkout() {
 
                         </form>
                             <button  onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
+                        
                         
                     </div>
                 </div>
