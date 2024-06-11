@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { json, Navigate } from 'react-router-dom';
+import { json, Navigate, useNavigate } from 'react-router-dom';
 
 import './checkout.css';
 import './store.css';
@@ -121,6 +121,7 @@ function Checkout() {
     };
 
     // ooh keegi ostis midagi
+    const navigate = useNavigate();
     const placeOrder = async () => {
         const cart = JSON.parse(window.localStorage.getItem('cart'));
         const total = calculateTotal();
@@ -151,6 +152,7 @@ function Checkout() {
         } catch (error) {
             console.error('Error placing order:', error);
         }
+        navigate("/confirmation")
     };
 
     
@@ -160,7 +162,7 @@ function Checkout() {
         <div className='Showcase'>
             <div className="Showcase-bg-blank">
                 <Navbar/>
-                <div className='Container'>
+                <div className='Container Min-Page-Height'>
                     <div className='Title-checkout'>
                         <h1>Checkout</h1>
                     </div>

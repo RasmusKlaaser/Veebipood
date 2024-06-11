@@ -42,17 +42,17 @@ function About() {
                             <ul>
                                 <li>
                                     <a href="https://www.facebook.com" className="Store-follow-icon">
-                                        <img src="../../img/facebook.png" alt="facebook"/>
+                                        <img className='Img' src={require("../img/facebook.png")} alt="facebook"/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.instagram.com" className="Store-follow-icon">
-                                        <img src="../../img/instagram.png" alt="instagram"/>
+                                        <img className='ImgI' src={require("../img/instagram.png")} alt="instagram"/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.twitter.com" className="Store-follow-icon">
-                                        <img src="../../img/twitter.png" alt="twitter"/>
+                                        <img className='ImgI' src={require("../img/twitter.png")} alt="twitter"/>
                                     </a>
                                 </li>
                             </ul>

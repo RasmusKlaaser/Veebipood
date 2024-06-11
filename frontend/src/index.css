@@ -38,6 +38,10 @@ a {
   height: 1080px;
 }
 
+.Min-Page-Height {
+  min-height: 1080px;
+}
+
 .Borders-primary {
   border-color: black;
   border-radius: 15px;
@@ -100,6 +104,12 @@ a {
 .Img {
   width: 250px;
   height: 250px;
+  object-fit: cover center;
+}
+
+.ImgI {
+  width: 200px;
+  height: 200px;
   object-fit: cover center;
 }
 
