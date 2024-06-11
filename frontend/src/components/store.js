@@ -56,20 +56,27 @@ function Store() {
         <div id="secondary-showcase">
             <div className="container">
                 <div>
-                    {products.map(product => (
+                {products.map(product => (
                         <div key={product._id} className="borders">
-                            <img src={product.image}></img>
+                            <img src={product.image} alt={product.name} />
                             <h1>{product.name}</h1>
-                            <h1> $ {product.price}</h1>
+                            <h1>$ {product.price}</h1>
                             {product.quantity > 0 ? (
                                 <>
                                     <h1>Only {product.quantity} available</h1>
-                                    <button onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
+                                    <button
+                                        onClick={() => handleProductAdd(product._id)}
+                                        disabled={cart[product._id] >= product.quantity}
+                                    >
+                                        {cart[product._id] >= product.quantity ? 'Out of Stock' : 'ADD TO CART'}
+                                    </button>
                                 </>
                             ) : (
                                 <h1>Out of Stock</h1>
                             )}
-                            
+                            {product.quantity <= cart[product._id] && (
+                                <h1>Purchase limit reached</h1>
+                            )}
                         </div>
                     ))}
                     <a href='/checkout'>to checkout nupp</a>
