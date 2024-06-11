@@ -71,7 +71,7 @@ a {
 } 
 
 .Showcase-bg-primary {
-  background: url(../img/pexels-photo-416676.jpeg) no-repeat center/cover;
+  background: url(./img/pexels-photo-416676.jpeg) no-repeat center/cover;
   height: 120%;
   width: 100%;
 }
