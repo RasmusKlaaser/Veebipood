@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import './store.css';
+import Navbar from "./navbar";
+import Footer from "./footer";
 
 function Store() {
     // save data
@@ -73,21 +76,34 @@ function Store() {
 
 
     return (
-        <div id="secondary-showcase">
-            <div className="container">
-                <div>
-                    {products.map(product => (
-                        <div key={product._id} className="borders">
-                            <img src={product.image}></img>
-                            <h1>{product.name}</h1>
-                            <h1> $ {product.price}</h1>
-                            <h1>only {product.quantity} still available</h1>
-                            <button onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
-
+        <div className="Showcase">
+            <div className="Showcase-bg-primary">
+                <Navbar/>
+                <div className="Product-Outline Showcase-mg Page-Height">
+                    <div className="Container Center Page-Height">
+                        <div className="Title-product Center">
+                            <h1>Product List</h1>
                         </div>
-                    ))}
-                    <a href='/checkout'>to checkout nupp</a>
+                        <div className="Product">
+                            {products.map(product => (
+                                <div key={product._id} className="Product-item Text-body Borders-secondary">
+                                    <img className='Img Left Borders-secondary' src={product.image}></img>
+                                    <div className="Product-info">
+                                        <h1 className="Product-name Left">{product.name}</h1>
+                                        <h1 className="Product-price Right"> $ {product.price}</h1>
+                                        <br/>
+                                        <h1 className="Product-quantity Text-secondary">Only <span className="Product-amount Text-primary">{product.quantity}</span> still available</h1>
+                                        <button className='Add-to-cart-button Borders-secondary' onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
+                                    </div>    
+                                </div>
+                            ))}
+                            <div className="To-checkout Text-body Borders-secondary Center">
+                                <a className="To-checkout-button Borders-secondary Center" href='/checkout'>Continue to checkout</a>
+                            </div> 
+                        </div>
+                    </div>
                 </div>
+                <Footer/>
             </div>
         </div>
     );

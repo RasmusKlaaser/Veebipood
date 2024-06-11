@@ -7,7 +7,7 @@ function Navbar() {
         <nav className='Navbar'>
             <ul>
                 <a href='/'>Home</a>
-                <a href='#about'>About</a>
+                <a href='/#about'>About</a>
                 <a href='/store'>Products</a>
                 <div className='Cart'>
                     <div className='Cart-item-count'>
