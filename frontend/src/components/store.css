@@ -58,12 +58,16 @@
     font-weight: bold;
 }
 
+.Add-to-cart-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
+}
+
 .To-checkout {
     width: 400px;
     height: 100px;
     margin-bottom: 20px;
     padding-left: 20px;
-
 }
 
 .To-checkout-button {
@@ -74,4 +78,9 @@
     font-weight: bold;
     text-align: center;
     align-content: center;
+}
+
+.To-checkout-button:hover {
+    background-color: rgb(246, 230, 214);
+    color: #333;
 }

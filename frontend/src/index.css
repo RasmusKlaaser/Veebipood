@@ -81,6 +81,11 @@ a {
   width: 100%;
 }
 
+.Showcase-bg-blank {
+  background-color: #eee;
+  width: 100%;
+}
+
 .Showcase-mg {
   background-color: #D1B398;
   height: 100%;

@@ -10,27 +10,20 @@ function Store() {
     const initialCart = storedCart !== null ? JSON.parse(storedCart) : {};
     const [cart, setCart] = useState(initialCart);
 
-
     useEffect(() => {
         console.log(cart);
         window.localStorage.setItem('cart', JSON.stringify(cart));
         console.log(cart)
     }, [cart]);
 
-   
     const handleProductAdd = (id) => {
         setCart(prevCart => {
-            const newCart = { ...prevCart };
-            newCart[id] = (newCart[id] || 0) + 1;
-            return newCart;
+             const newCart = { ...prevCart };
+             newCart[id] = (newCart[id] || 0) + 1;
+             return newCart;
         });
     };
-    
-
-
-
     const [products, setProducts] = useState([]);
-    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -92,7 +85,6 @@ function Store() {
                                     <div className="Product-info">
                                         <h1 className="Product-name Left">{product.name}</h1>
                                         <h1 className="Product-price Right"> $ {product.price}</h1>
-                                        <br/>
                                         <h1 className="Product-quantity Text-secondary">Only <span className="Product-amount Text-primary">{product.quantity}</span> still available</h1>
                                         <button className='Add-to-cart-button Borders-secondary' onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
                                     </div>    
