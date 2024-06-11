@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { json, Navigate } from 'react-router-dom';
+import { json, Navigate, useNavigate } from 'react-router-dom';
 
 function Checkout() {
 
@@ -116,21 +116,22 @@ function Checkout() {
     };
 
     // ooh keegi ostis midagi
+    const Navigate = useNavigate();
     const placeOrder = async () => {
         const cart = JSON.parse(window.localStorage.getItem('cart'));
         const total = calculateTotal();
     
         try {
-            // Convert cart object to string
+         
             const cartString = JSON.stringify(cart);
     
-            // Send the order request to the backend
+   
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                // Pass the cart as a string
+            
                 body: JSON.stringify({ cart: cartString, total })
             });
     
@@ -146,6 +147,7 @@ function Checkout() {
         } catch (error) {
             console.error('Error placing order:', error);
         }
+        Navigate('/confirmation')
     };
 
     
@@ -215,7 +217,7 @@ function Checkout() {
                             <br />
 
                         </form>
-                            <button  href ='/confirmation' onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
+                            <button  onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
                     </div>
                 </div>
             </div>
