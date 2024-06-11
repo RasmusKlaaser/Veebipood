@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { json, Navigate } from 'react-router-dom';
-import { json } from 'react-router-dom';
+
 import './checkout.css';
 import './store.css';
 import Navbar from './navbar';
@@ -173,7 +173,7 @@ function Checkout() {
                                 <h1 className='Product-price Right'>$ {product.price}</h1>
                                 <div className='Item-quantity'>
                                     <ul>
-                                        <button className='Add-from-cart-button Borders-secondary' onClick={() => removeItem(product._id)}>+</button>
+                                        <button className='Add-from-cart-button Borders-secondary' onClick={() => addItem(product._id)}>+</button>
                                         <h1 className='From-quantity Text-secondary'><span className='Product-amount Text-primary'>{JSON.parse(window.localStorage.getItem('cart'))[product._id]}x</span> </h1>
                                         <button className='Remove-from-cart-button Borders-secondary' onClick={() => removeItem(product._id)}>-</button>
                                     </ul>
