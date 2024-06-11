@@ -8,4 +8,4 @@
 <h3>Tiimi liikmete ülesanded:</h3>
 <h4>Rasmus Klaaser: algse veebilehe idee loomine, veebilehe kondikava kujundamine valitud keskkonnas (Figma), Githubi aluse sättimine ja sinna tiimi liikmete ühendamine ning Githubi repositooriumi haldamine, veebilehe frontendi loomine ja tegelemine, dokumenteerimine Pivotal Trackeris. </h4>
 <h4>Asko Hulkko: algse backendi loomine, andmebaasi loomine ning veebilehega ühendamine, lõpp veebilehe üle lihvimine , Pivotal Trackeris dokumenteerimine, abistamine. </h4>
-<h4>Rasmus Kuusmaa: backendiga tegelemine ning andmebaasiga veebilehe ühendamine.</h4>
+<h4>Rasmus Kuusmaa: lehe funktsionaalsus.</h4>
