@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { json } from 'react-router-dom';
+import { json, Navigate } from 'react-router-dom';
 
 function Checkout() {
 
@@ -119,29 +119,30 @@ function Checkout() {
     const placeOrder = async () => {
         const cart = JSON.parse(window.localStorage.getItem('cart'));
         const total = calculateTotal();
-
+    
         try {
-            for (let id in cart) {
-                await handleQuantity(id, cart[id]);
-            }
-
+            // Convert cart object to string
+            const cartString = JSON.stringify(cart);
+    
+            // Send the order request to the backend
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ cart, total })
+                // Pass the cart as a string
+                body: JSON.stringify({ cart: cartString, total })
             });
-
+    
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to place order');
             }
-
+    
             const responseData = await response.json();
             console.log(responseData.message);
-            clearCart(); 
-
+            clearCart();
+    
         } catch (error) {
             console.error('Error placing order:', error);
         }
@@ -214,9 +215,7 @@ function Checkout() {
                             <br />
 
                         </form>
-                            <button  onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
-                        
-                        
+                            <button  href ='/confirmation' onClick={() => placeOrder(JSON.stringify(window.localStorage.getItem('cart')), calculateTotal())}>Buy</button>
                     </div>
                 </div>
             </div>
