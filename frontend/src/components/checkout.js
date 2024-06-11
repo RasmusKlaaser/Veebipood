@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { json, Navigate } from 'react-router-dom';
 import { json } from 'react-router-dom';
 import './checkout.css';
 import './store.css';
@@ -74,17 +75,68 @@ function Checkout() {
     
         setCartProducts(updatedCartProducts);
     };
+    // add item
+    const addItem = (id) => {
+        const updatedCart = { ...JSON.parse(window.localStorage.getItem('cart')) };
+        const product = cartProducts.find(product => product._id === id);
     
-    // place order
+        if (product && updatedCart[id] < product.quantity) {
+            updatedCart[id] = (updatedCart[id] || 0) + 1;
+            window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+            
+            setCartProducts(cartProducts.map(product => {
+                if (product._id === id) {
+                    return { ...product };
+                }
+                return product;
+            }));
+        }
+    }
 
-    const placeOrder = async (cart, total) => {
+    // less product :(
+    const handleQuantity = async (id, quant) => {
+        const product = products.find(product => product._id === id);
+        if (product && product.quantity > 0) {
+            const updatedProduct = { ...product, quantity: product.quantity - quant };
+            setProducts(prevProducts =>
+                prevProducts.map(p => (p._id === id ? updatedProduct : p))
+            );
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/products/${product._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }, 
+                    body: JSON.stringify(updatedProduct),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update product');
+                }
+            } catch (error) {
+                console.error('Error updating product:', error);
+            }
+        }
+    };
+
+    // ooh keegi ostis midagi
+    const placeOrder = async () => {
+        const cart = JSON.parse(window.localStorage.getItem('cart'));
+        const total = calculateTotal();
+    
         try {
-            const response = await fetch('/api/orders', {
+            // Convert cart object to string
+            const cartString = JSON.stringify(cart);
+    
+            // Send the order request to the backend
+            const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ cart, total })
+                // Pass the cart as a string
+                body: JSON.stringify({ cart: cartString, total })
             });
     
             if (!response.ok) {
@@ -94,12 +146,13 @@ function Checkout() {
     
             const responseData = await response.json();
             console.log(responseData.message);
-         
+            clearCart();
+    
         } catch (error) {
-            console.error( error);
-
+            console.error('Error placing order:', error);
         }
     };
+
     
    
     
@@ -177,4 +230,4 @@ function Checkout() {
     );
 }
 
-export default Checkout;
+export default Checkout

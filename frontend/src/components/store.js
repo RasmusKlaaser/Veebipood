@@ -44,29 +44,8 @@ function Store() {
         return <div>Loading...</div>; 
     }
 
-    /*
-    const handlequantity = async () => {
-        if (product.quantity > 0) {
-            const updatedProduct = { ...product, quantity: product.quantity - 1 };
-            setProduct(updatedProduct);
-
-            try {
-                const response = await fetch(`/api/products/${product._id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(updatedProduct),
-                });
-
-                if (!response.ok) {
-                    throw new Error('failed to update product');
-                }
-            } catch (error) {
-                console.error('error updating product:', error);
-            }
-        }
-    };*/
+    
+    
 
 
     return (
