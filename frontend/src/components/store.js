@@ -61,8 +61,15 @@ function Store() {
                             <img src={product.image}></img>
                             <h1>{product.name}</h1>
                             <h1> $ {product.price}</h1>
-                            <h1>only {product.quantity} still available</h1>
-                            <button onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
+                            {product.quantity > 0 ? (
+                                <>
+                                    <h1>Only {product.quantity} available</h1>
+                                    <button onClick={() => handleProductAdd(product._id)}>ADD TO CART</button>
+                                </>
+                            ) : (
+                                <h1>Out of Stock</h1>
+                            )}
+                            
                         </div>
                     ))}
                     <a href='/checkout'>to checkout nupp</a>

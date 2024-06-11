@@ -71,7 +71,7 @@ function Checkout() {
         setCartProducts(updatedCartProducts);
     };
     
-    // decrement product value
+    // less product :(
     const handleQuantity = async (id, quant) => {
         const product = products.find(product => product._id === id);
         if (product && product.quantity > 0) {
@@ -98,7 +98,7 @@ function Checkout() {
         }
     };
 
-    // Handle order
+    // ooh keegi ostis midagi
     const placeOrder = async () => {
         const cart = JSON.parse(window.localStorage.getItem('cart'));
         const total = calculateTotal();
@@ -123,7 +123,7 @@ function Checkout() {
 
             const responseData = await response.json();
             console.log(responseData.message);
-            clearCart(); // Clear cart after placing order
+            clearCart(); 
 
         } catch (error) {
             console.error('Error placing order:', error);
